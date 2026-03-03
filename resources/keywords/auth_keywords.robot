@@ -9,7 +9,7 @@ Aller Sur Glisshop
     Open Browser    ${URL_GLISSHOP}    ${BROWSER}
     Maximize Browser Window
     Fermer Le Bandeau Cookies
-
+    
 Fermer Le Navigateur
     Close Browser
 
