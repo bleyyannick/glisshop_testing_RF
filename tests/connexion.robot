@@ -1,6 +1,5 @@
 *** Settings ***
 Library    SeleniumLibrary
-Resource    ../resources/pages/connexion_page.robot
 Resource    ../resources/keywords/connexion_keywords.robot
 Resource    ../variables/global_variables.robot
 
