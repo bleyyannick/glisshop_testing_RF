@@ -4,11 +4,11 @@ Resource    ../resources/keywords/creation_compte.keywords.robot
 Resource    ../resources/keywords/connexion_keywords.robot
 Resource    ../variables/global_variables.robot
 
-Suite Setup      Aller Sur Glisshop
-Suite Teardown   Fermer Le Navigateur
-Test Setup       Aller Sur La Page De Connexion
-Test Teardown    Se Deconnecter Si Connecte
-Test Template    Utilisateur Tente De Creer Un Compte
+Suite Setup      Aller sur glisshop
+Suite Teardown   Fermer le navigateur
+Test Setup       Aller sur la page de connexion
+Test Teardown    Se deconnecter si connecte
+Test Template    Utilisateur tente de creer un compte
 
 
 
