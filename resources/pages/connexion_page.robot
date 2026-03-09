@@ -26,8 +26,8 @@ Fermer le navigateur
     Close Browser
 
 Fermer le bandeau cookies
-    Wait Until Element Is Visible    css=button.onetrust-close-btn-handler    timeout=${default_timeout}
-    Click Button    css=button.onetrust-close-btn-handler
+    Wait Until Element Is Visible        ${selecteur_cookies}        timeout=${default_timeout}
+    Click Button    ${selecteur_cookies}
 
 Se deconnecter si connecte
     ${is_visible}=    Run Keyword And Return Status    Element Should Be Visible    ${xpath_bouton_deconnexion}

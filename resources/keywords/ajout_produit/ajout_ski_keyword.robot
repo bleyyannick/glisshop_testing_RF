@@ -37,11 +37,9 @@ Accepter Les Conditions
 
 Creer une adresse de livraison
     Cliquer element    ${bouton_creer_adresse}
-    Cliquer element    xpath=//*[@id="address"]//button[contains(@class,'dropdown-toggle-list')]
-    Cliquer element    xpath=//*[@id="address"]//div[contains(@class,'dropdown-menu_lang')]
-    Execute Javascript
-    ...    [...document.querySelectorAll("#address [data-ng-click*='countryCode']")]
-    ...    .find(el => el.textContent.includes('FRANCE')).click()
+    Cliquer element    ${bouton_dropdown_pays}
+    Cliquer element    ${options_pays}
+    Execute Javascript    ${script_option_pays}
     Remplir champ    ${input_nom}               Dupont
     Remplir champ    ${input_prenom}            Jean
     Scroller vers element    ${input_numero_adresse}
@@ -71,7 +69,7 @@ Verifier que le panier contient un produit
     Verifier element visible    ${badge_panier}
 
 Aller vider le panier
-    Go To    url=https://www.glisshop.com/glisshop/mon-panier.html
+    Go To    ${url_panier}
     Attendre element visible    xpath=//h1[contains(@class,'c-cart-page__header-title') and normalize-space()='Mon panier']
     Attendre element cliquable    xpath=//div[contains(@class,'cart-line_priceWrapper')]//span[contains(@class,'icon-close')]
     Cliquer element    xpath=//div[contains(@class,'cart-line_priceWrapper')]//span[contains(@class,'icon-close')]/..
@@ -80,7 +78,7 @@ Aller vider le panier
 
 
 Aller se deconnecter
-    Go To    https://www.glisshop.com/mon-compte/mes-informations.html
+    Go To    ${url_infos}
     Attendre element visible    ${xpath_bouton_deconnexion}
     Verifier element visible    ${xpath_bouton_deconnexion}
     Attendre element cliquable    ${xpath_bouton_deconnexion}
