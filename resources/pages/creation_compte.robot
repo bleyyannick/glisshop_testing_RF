@@ -32,7 +32,6 @@ Remplir le formulaire de creation de compte
 
 
 # Assertions
-
 Verifier creation de compte impossible
     Scroll Element Into View      ${xpath_bouton_creer_compte}
     Wait Until Element Is Visible    ${xpath_bouton_creer_compte}    timeout=${default_timeout}

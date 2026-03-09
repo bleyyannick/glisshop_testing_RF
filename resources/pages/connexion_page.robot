@@ -8,9 +8,19 @@ Resource    ../../variables/global_variables.robot
 
 
 Aller sur glisshop
-    Open Browser    ${url_glisshop}    ${browser}
+    ${prefs}=    Create Dictionary
+    ...    profile.default_content_setting_values.notifications=${2}
+    ...    autofill.profile_enabled=${False}
+    ...    autofill.address_enabled=${False}
+    ${options}=    Evaluate
+    ...    sys.modules['selenium.webdriver'].ChromeOptions()
+    ...    sys, selenium.webdriver
+    Call Method    ${options}    add_experimental_option    prefs    ${prefs}
+    Open Browser    ${url_glisshop}    ${browser}    options=${options}
     Maximize Browser Window
     Fermer le bandeau cookies
+
+
     
 Fermer le navigateur
     Close Browser

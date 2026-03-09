@@ -12,7 +12,8 @@ ${bouton_ajouter_panier}    xpath=//button[normalize-space()='Ajouter au panier'
 ${bouton_voir_panier}       xpath=//a[@href and contains(normalize-space(), 'Voir mon panier')]
 ${bouton_continuer_achats}  xpath=//button[normalize-space()='Poursuivre mes achats']
 ${bouton_valide_commande}   xpath=//a[@title='Passer la commande']
-${checkbox_conditions_vente}  id=acceptTermsAndConditions
+${checkbox_conditions_vente}  acceptTermsAndConditions
+${ng_class_checkbox_conditions_vente}  ng-empty
 ${bouton_valide_coordonnes}  xpath=//button[normalize-space()='Valider mes coordonnées']
 
 ${badge_panier}             xpath=//header//span[contains(@class,'badge')]
@@ -32,3 +33,5 @@ ${input_numero_adresse}            xpath=//input[@type='text' and contains(@id,'
 ${input_code_postal}        xpath=//input[@type='text' and contains(@id,'zipCode')]
 ${input_ville}             xpath=//input[@type='text' and contains(@id,'locality')]   
 ${input_rue}              xpath=//input[@placeholder="Adresse: rue, avenue, lieu dit... *"] 
+
+${bouton_valide_livraison}  xpath=//button[normalize-space()='Valider la livraison']

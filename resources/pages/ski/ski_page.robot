@@ -43,18 +43,25 @@ Verifier element visible
     Element Should Be Visible    ${locator}
 
 Checker element
-    [Arguments]    ${locator}
+    [Arguments]    ${locator}  ${ng-class}
     Attendre element visible    ${locator}
-    Wait Until Keyword Succeeds    5x    1s    Cliquer Checkbox Interne    ${locator}
+    Wait Until Keyword Succeeds    5x    1s    Cocher Checkbox Angular    ${locator}     ${ng-class}
 
 Remplir champ
     [Arguments]    ${locator}    ${value}
     Cliquer element    ${locator}
     Input Text    ${locator}    ${value}
 
-Cliquer Checkbox Interne
-    [Arguments]    ${locator}    
-    Wait Until Element Is Visible    ${locator}        ${default_timeout}
-    ${checkbox}=    Get WebElement   ${locator}
-    Execute Javascript               arguments[0].click()    ARGUMENTS    ${checkbox}
-    Checkbox Should Be Selected      ${locator}
+Verifier Checkbox Cochee
+    [Arguments]    ${locator}    ${ng_class}=ng-empty
+    ${classes}=    Get Element Attribute    ${locator}    class
+    Should Not Contain    ${classes}    ${ng_class}
+
+Cocher Checkbox Angular
+    [Arguments]    ${id}    ${ng_class}=ng-empty
+    Execute Javascript
+    ...    let el = document.getElementById('${id}');
+    ...    el.checked = true;
+    ...    angular.element(el).triggerHandler('change');
+    Wait Until Keyword Succeeds    5x    1s
+    ...    Verifier Checkbox Cochee    id=${id}    ${ng_class}

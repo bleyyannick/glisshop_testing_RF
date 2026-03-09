@@ -8,6 +8,7 @@ Resource   ../../variables/global_variables.robot
 Suite Setup       Aller sur glisshop
 Suite Teardown    Fermer le navigateur
 Test Setup        Se connecter avec les identifiants    ${valid_email}    ${valid_password}
+Test Teardown     Aller Vider le panier et se deconnecter
 
 
 
@@ -34,4 +35,6 @@ TC-EXG-002-02 Valider la commande d'un produit ajouté au panier
       Acceder au panier
       Valider la commande
       Creer une adresse de livraison
+      Valider la livraison
+     # Procéder au paiement
       Sleep   4s
