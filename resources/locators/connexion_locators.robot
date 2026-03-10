@@ -3,6 +3,8 @@
 ${selecteur_input_email}       css=#block2-login
 ${selecteur_input_password}    css=#block2-password
 
+${selecteur_cookies}      css=button.onetrust-close-btn-handler
+
 ${xpath_bouton_login}     xpath=//button[contains(text(),"Connexion à mon compte")]
 ${xpath_bouton_deconnexion}    xpath=//a[contains(text(),"Déconnexion")] 
 ${xpath_bouton_creer_compte}        xpath=//button[contains(text(),"Créer mon compte")]

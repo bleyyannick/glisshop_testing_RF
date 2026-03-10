@@ -7,70 +7,80 @@ Resource    ../../variables/global_variables.robot
 *** Keywords ***
 
 
-Aller Sur Glisshop
-    Open Browser    ${url_glisshop}    ${browser}
+Aller sur glisshop
+    ${prefs}=    Create Dictionary
+    ...    profile.default_content_setting_values.notifications=${2}
+    ...    autofill.profile_enabled=${False}
+    ...    autofill.address_enabled=${False}
+    ${options}=    Evaluate
+    ...    sys.modules['selenium.webdriver'].ChromeOptions()
+    ...    sys, selenium.webdriver
+    Call Method    ${options}    add_experimental_option    prefs    ${prefs}
+    Open Browser    ${url_glisshop}    ${browser}    options=${options}
     Maximize Browser Window
-    Fermer Le Bandeau Cookies
+    Fermer le bandeau cookies
+
+
     
-Fermer Le Navigateur
+Fermer le navigateur
     Close Browser
 
-Fermer Le Bandeau Cookies
-    Wait Until Element Is Visible    css=button.onetrust-close-btn-handler    timeout=${default_timeout}
-    Click Button    css=button.onetrust-close-btn-handler
+Fermer le bandeau cookies
+    Wait Until Element Is Visible        ${selecteur_cookies}        timeout=${default_timeout}
+    Click Button    ${selecteur_cookies}
 
-
-Se Deconnecter Si Connecte  
+Se deconnecter si connecte
     ${is_visible}=    Run Keyword And Return Status    Element Should Be Visible    ${xpath_bouton_deconnexion}
     IF    ${is_visible}
-        Se Deconnecter
+        Se deconnecter
     END
 
-Se Deconnecter 
-    Scroll Element Into View    ${xpath_bouton_deconnexion}  
+Se deconnecter
+    Scroll Element Into View    ${xpath_bouton_deconnexion}
     Click Element    ${xpath_bouton_deconnexion}
 
-Saisir Email
+Saisir email
     [Arguments]    ${selector}     ${email}
     Input Text    ${selector}    ${email}
 
-Saisir Mot De Passe
+Saisir mot de passe
     [Arguments]    ${selector}     ${password}
     Input Text    ${selector}    ${password}
 
-Aller Sur La Page De Connexion
+Aller sur la page de connexion
     Wait Until Element Is Enabled        css=[data-id="accountShort"] a[href*="creation-de-compte"]   timeout=${default_timeout}
     Click Element      css=[data-id="accountShort"] a[href*="creation-de-compte"]
     
-Cliquer sur Déjà Client
+Cliquer sur deja client
    Wait Until Element Is Visible        xpath=//*[@id="content-column"]/div/div[1]/ul/li[2]    timeout=${default_timeout}
    Click Element      //*[@id="content-column"]/div/div[1]/ul/li[2]
 
-Soumettre Le Formulaire De Connexion
+Soumettre le formulaire de connexion
     Click Button        ${xpath_bouton_login}
 
-Remplir Le Formulaire De Connexion
+Remplir le formulaire de connexion
     [Arguments]    ${email}    ${password}
-    Saisir Email    ${selecteur_input_email}      ${email}    
-    Saisir Mot De Passe    ${selecteur_input_password}      ${password}
+    Saisir email    ${selecteur_input_email}      ${email}
+    Saisir mot de passe    ${selecteur_input_password}      ${password}
 
-
-Se Connecter Avec Les Identifiants
+Se connecter avec les identifiants
     [Arguments]    ${email}    ${password}
-    Aller Sur La Page De Connexion
-    Cliquer sur Déjà Client 
-    Remplir Le Formulaire De Connexion    ${email}    ${password}
-    Soumettre Le Formulaire De Connexion 
+    Aller sur la page de connexion
+    Cliquer sur deja client
+    Remplir le formulaire de connexion    ${email}    ${password}
+    Soumettre le formulaire de connexion
 
-Verifier Connexion Reussie
-    Wait Until Element Is Visible    ${xpath_title_client}    timeout=${default_timeout}    
+
+# Assertions
+Verifier connexion reussie
+    Wait Until Element Is Visible    ${xpath_title_client}    timeout=${default_timeout}
     Element Should Contain    ${xpath_title_client}      ${msg_espace_client}
 
-Verifier Message D'erreur De Connexion
+Verifier message d'erreur de connexion
     Wait Until Element Is Visible    css=.form-group p.text-danger    timeout=${default_timeout}
     Element Should Contain    css=.form-group p.text-danger    ${msg_erreur_connexion}
-    
-Verifier Que Le Bouton De Connexion Est Desactive
+
+Verifier que le bouton de connexion est desactive
     Scroll Element Into View      ${xpath_bouton_login}
     Wait Until Element Is Visible    ${xpath_bouton_login}    timeout=${default_timeout}
     Element Should Be Disabled    ${xpath_bouton_login}

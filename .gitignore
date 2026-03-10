@@ -1,3 +1,7 @@
 venv/
 results/
 variables/global_variables.robot
+allure-results/
+logs/
+reports/
+*.log

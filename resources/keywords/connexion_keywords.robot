@@ -5,7 +5,7 @@ Resource      ../pages/connexion_page.robot
 *** Keywords ***
 
 
-Utilisateur Tente De Se Connecter
+Utilisateur tente de se connecter
     [Arguments]    ${email}    ${password}    ${verification_keyword}
-    Se Connecter Avec Les Identifiants    ${email}    ${password}
+    Se connecter avec les identifiants    ${email}    ${password}
     Run Keyword    ${verification_keyword}

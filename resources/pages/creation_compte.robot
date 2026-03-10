@@ -9,34 +9,36 @@ Resource    connexion_page.robot
 
 
 
-Cliquer sur Nouveau Client
+Cliquer sur nouveau client
    Wait Until Element Is Visible       ${selecteur_input_create_email}     timeout=${default_timeout}
    Click Element      ${selecteur_input_create_email}
 
 
-Confirmer Mot De Passe
+Confirmer mot de passe
     [Arguments]    ${password}
     Input Text    css=#rbs-user-create-account-confirm-password        ${password}
 
-Creer Un Compte 
+Creer un compte
     [Arguments]    ${email}    ${password}
-    Aller Sur La Page De Connexion
-    Cliquer sur Nouveau Client
-    Remplir Le Formulaire De Creation De Compte    ${email}    ${password} 
+    Aller sur la page de connexion
+    Cliquer sur nouveau client
+    Remplir le formulaire de creation de compte    ${email}    ${password}
 
-Remplir Le Formulaire De Creation De Compte
+Remplir le formulaire de creation de compte
     [Arguments]    ${email}    ${password}
-    Saisir Email        ${selecteur_input_create_email}      ${email}
-    Saisir Mot De Passe    ${selecteur_input_create_password}      ${password}
-    Confirmer Mot De Passe    ${password}
+    Saisir email        ${selecteur_input_create_email}      ${email}
+    Saisir mot de passe    ${selecteur_input_create_password}      ${password}
+    Confirmer mot de passe    ${password}
 
-Verifier Creation de Compte Impossible
+
+# Assertions
+Verifier creation de compte impossible
     Scroll Element Into View      ${xpath_bouton_creer_compte}
     Wait Until Element Is Visible    ${xpath_bouton_creer_compte}    timeout=${default_timeout}
     Wait Until Keyword Succeeds    3x    1s    Element Should Be Disabled    ${xpath_bouton_creer_compte}
 
 
-Verifier Que Le Bouton De Connexion Est Desactive
+Verifier que le bouton de connexion est desactive
     Scroll Element Into View      ${xpath_bouton_login}
     Wait Until Element Is Visible    ${xpath_bouton_login}    timeout=${default_timeout}
     Element Should Be Disabled    ${xpath_bouton_login}
