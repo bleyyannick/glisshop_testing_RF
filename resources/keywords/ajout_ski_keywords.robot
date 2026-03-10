@@ -72,10 +72,15 @@ Verifier que le panier contient un produit
 Aller vider le panier
     Go To    ${url_panier}
     Attendre element visible    xpath=//h1[contains(@class,'c-cart-page__header-title') and normalize-space()='Mon panier']
+    ${bandeau_visible}=    Run Keyword And Return Status
+    ...    Element Should Be Visible    xpath=//p[contains(@class,'cart-locked')]//span[@data-ng-show="!cartData.productsConflict"][normalize-space()='Cliquez ici']
+    IF    ${bandeau_visible}
+        Cliquer element    xpath=//p[contains(@class,'cart-locked')]//span[@data-ng-show="!cartData.productsConflict"][normalize-space()='Cliquez ici']
+    END
     Attendre element cliquable    xpath=//div[contains(@class,'cart-line_priceWrapper')]//span[contains(@class,'icon-close')]
     Cliquer element    xpath=//div[contains(@class,'cart-line_priceWrapper')]//span[contains(@class,'icon-close')]/..
     Attendre element visible    xpath=//h1[normalize-space()='Votre panier est vide.']
-    Element Should Be Visible   xpath=//h1[normalize-space()='Votre panier est vide.']
+    Element Should Be Visible    xpath=//h1[normalize-space()='Votre panier est vide.']
 
 
 Aller se deconnecter

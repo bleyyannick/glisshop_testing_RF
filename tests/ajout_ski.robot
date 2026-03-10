@@ -3,7 +3,7 @@ Library    SeleniumLibrary
 Resource   ../resources/pages/ski_page.robot
 Resource   ../resources/keywords/connexion_keywords.robot
 Resource   ../resources/locators/ajout_ski_locators.robot
-Resource   ../resources/keywords/ajout_ski_keyword.robot
+Resource   ../resources/keywords/ajout_ski_keywords.robot
 Resource   ../variables/global_variables.robot
 Suite Setup       Aller sur glisshop
 Suite Teardown    Fermer le navigateur
@@ -24,16 +24,5 @@ TC-EXG-002-01 Ajouter une paire de ski au panier
       Continuer les achats
       Verifier que le panier contient un produit
 
-TC-EXG-002-02 Valider la commande d'un produit ajouté au panier
-      Ouvrir le menu
-      Acceder aux skis de rando homme
-      Choisir un ski
-      Choisir la taille du ski
-      Ajouter le ski au panier
-      Acceder au panier
-      Valider la commande
-      Creer une adresse de livraison
-      Valider la livraison
-      Procéder au paiement
-      #a enlever plus tard
-      Sleep   4s
+
+
