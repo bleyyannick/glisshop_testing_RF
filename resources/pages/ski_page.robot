@@ -1,6 +1,6 @@
 *** Settings ***
 Library    SeleniumLibrary
-Resource   ../../../variables/global_variables.robot
+Resource   ../../variables/global_variables.robot
 
 *** Keywords ***
 
@@ -34,7 +34,7 @@ Survol element interne
 Scroller vers element
     [Arguments]    ${locator}
     Scroll Element Into View    ${locator}
-    Attendre element visible    ${locator}
+    Attendre element cliquable   ${locator}
     
 
 Verifier element visible
@@ -44,11 +44,12 @@ Verifier element visible
 
 Checker element
     [Arguments]    ${locator}  ${ng-class}
-    Attendre element visible    ${locator}
+    Attendre element cliquable    ${locator}
     Wait Until Keyword Succeeds    5x    1s    Cocher Checkbox Angular    ${locator}     ${ng-class}
 
 Remplir champ
     [Arguments]    ${locator}    ${value}
+    Attendre element cliquable    ${locator}
     Cliquer element    ${locator}
     Input Text    ${locator}    ${value}
 

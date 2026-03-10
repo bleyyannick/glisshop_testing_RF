@@ -1,8 +1,8 @@
 *** Settings ***
 Library    SeleniumLibrary
-Resource   ../../../resources/pages/ski/ski_page.robot
-Resource    ../../locators/connexion_locators.robot
-Resource   ../../locators/ajout_ski_locators.robot
+Resource   ../pages/ski_page.robot
+Resource   ../locators/connexion_locators.robot
+Resource   ../locators/ajout_ski_locators.robot
 
 *** Keywords ***
 
@@ -45,11 +45,11 @@ Creer une adresse de livraison
     Scroller vers element    ${input_numero_adresse}
     Remplir champ    ${input_numero_adresse}    23
     Scroller vers element    ${input_rue}
-    Remplir champ    ${input_rue}               Rue des Lilas
+    Remplir champ    ${input_rue}               Avenue Beau Soleil
     Scroller vers element    ${input_code_postal}
-    Remplir champ    ${input_code_postal}       92210
+    Remplir champ    ${input_code_postal}      75017
     Scroller vers element    ${input_ville}
-    Remplir champ    ${input_ville}             Clichy
+    Remplir champ    ${input_ville}             Paris
     Scroller vers element    ${input_telephone}
     Remplir champ    ${input_telephone}         0601020304
     Scroller vers element    ${bouton_valide_coordonnes}
@@ -60,6 +60,7 @@ Valider la commande
     Cliquer element    ${bouton_valide_commande}
 
 Valider la livraison
+    Attendre element visible    ${bouton_valide_livraison}
     Attendre element cliquable    ${bouton_valide_livraison}
     Scroller vers element         ${bouton_valide_livraison}
     Cliquer element               ${bouton_valide_livraison}
@@ -88,6 +89,29 @@ Aller Vider le panier et se deconnecter
     Aller vider le panier
     Aller se deconnecter
 
+Attendre iframe et switcher
+    Attendre element visible   id=hosted-fields-frame-card
+    Attendre element visible   id=hosted-fields-frame-expiry
+    Attendre element visible   id=hosted-fields-frame-cryptogram
+    
+    Attendre element cliquable    id=hosted-fields-frame-card
+    Select Frame    id=hosted-fields-frame-card
+    Cliquer element    id=hosted-fields-card
+    Remplir champ    id=hosted-fields-card    4111 1111 1111 1111
+    Unselect Frame
+
+    Attendre element cliquable   id=hosted-fields-frame-expiry
+    Select Frame    id=hosted-fields-frame-expiry
+    Cliquer element    id=hosted-fields-expiry
+    Remplir champ    id=hosted-fields-expiry    12/29
+    Unselect Frame
+
+    Attendre element cliquable   id=hosted-fields-frame-cryptogram
+    Select Frame    id=hosted-fields-frame-cryptogram
+    Cliquer element    id=hosted-fields-cryptogram
+    Remplir champ    id=hosted-fields-cryptogram    123
+    Unselect Frame
+
 
 Procéder au paiement
-    #TODO: A gérer avec l'iframe de paiement
+    Attendre iframe et switcher
