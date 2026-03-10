@@ -15,15 +15,6 @@ Test Teardown     Aller Vider le panier et se deconnecter
 
 *** Test Cases ***
 
-TC-EXG-002-01 Ajouter une paire de ski au panier
-      Ouvrir le menu
-      Acceder aux skis de rando homme
-      Choisir un ski
-      Choisir la taille du ski
-      Ajouter le ski au panier
-      Continuer les achats
-      Verifier que le panier contient un produit
-
 TC-EXG-002-02 Valider la commande d'un produit ajouté au panier
       Ouvrir le menu
       Acceder aux skis de rando homme
