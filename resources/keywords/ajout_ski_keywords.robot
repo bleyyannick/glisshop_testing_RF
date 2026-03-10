@@ -60,7 +60,6 @@ Valider la commande
     Cliquer element    ${bouton_valide_commande}
 
 Valider la livraison
-    Attendre element visible    ${bouton_valide_livraison}
     Attendre element cliquable    ${bouton_valide_livraison}
     Scroller vers element         ${bouton_valide_livraison}
     Cliquer element               ${bouton_valide_livraison}
