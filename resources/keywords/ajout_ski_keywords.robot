@@ -7,7 +7,7 @@ Resource   ../locators/ajout_ski_locators.robot
 *** Keywords ***
 
 Ouvrir le menu
-    Wait Until Element Is Not Visible    css=div.modal-ajax-waiting-modal    timeout=10s
+    Wait Until Element Is Not Visible    ${modal_chargement}    timeout=10s
     Cliquer element    ${menu_principal}
 
 Acceder aux skis de rando homme
@@ -34,8 +34,11 @@ Accepter Les Conditions
     Checker element    ${checkbox_conditions_vente}    ${ng_class_checkbox_conditions_vente}
 
 Creer une adresse de livraison
+    Attendre element visible    ${bouton_creer_adresse}    
     Cliquer element    ${bouton_creer_adresse}
+    Attendre element visible    ${bouton_dropdown_pays}
     Cliquer element    ${bouton_dropdown_pays}
+    Attendre element visible    ${options_pays}
     Cliquer element    ${options_pays}
     Execute Javascript    ${script_option_pays}
     
@@ -71,16 +74,16 @@ Verifier que le panier contient un produit
 
 Aller vider le panier
     Go To    ${url_panier}
-    Attendre element visible    xpath=//h1[contains(@class,'c-cart-page__header-title') and normalize-space()='Mon panier']
+    Attendre element visible    ${header_mon_panier}
     ${bandeau_visible}=    Run Keyword And Return Status
-    ...    Element Should Be Visible    xpath=//p[contains(@class,'cart-locked')]//span[@data-ng-show="!cartData.productsConflict"][normalize-space()='Cliquez ici']
+    ...    Element Should Be Visible    ${bandeau_panier_cliquez_ici}
     IF    ${bandeau_visible}
-        Cliquer element    xpath=//p[contains(@class,'cart-locked')]//span[@data-ng-show="!cartData.productsConflict"][normalize-space()='Cliquez ici']
+        Cliquer element    ${bandeau_panier_cliquez_ici}
     END
-    Attendre element cliquable    xpath=//div[contains(@class,'cart-line_priceWrapper')]//span[contains(@class,'icon-close')]
-    Cliquer element    xpath=//div[contains(@class,'cart-line_priceWrapper')]//span[contains(@class,'icon-close')]/..
-    Attendre element visible    xpath=//h1[normalize-space()='Votre panier est vide.']
-    Element Should Be Visible    xpath=//h1[normalize-space()='Votre panier est vide.']
+    Attendre element cliquable    ${bouton_supprimer_produit_panier}
+    Cliquer element    ${bouton_supprimer_produit_panier}
+    Attendre element visible    ${header_panier_vide}
+    Element Should Be Visible    ${header_panier_vide}
 
 
 Aller se deconnecter
@@ -95,26 +98,26 @@ Aller Vider le panier et se deconnecter
     Aller se deconnecter
 
 Attendre iframe et switcher
-    Attendre element visible   id=hosted-fields-frame-card
-    Attendre element visible   id=hosted-fields-frame-expiry
-    Attendre element visible   id=hosted-fields-frame-cryptogram
+    Attendre element visible   ${iframe_carte}
+    Attendre element visible   ${iframe_expiration}
+    Attendre element visible   ${iframe_cryptogramme}
     
-    Attendre element cliquable    id=hosted-fields-frame-card
-    Select Frame    id=hosted-fields-frame-card
-    Cliquer element    id=hosted-fields-card
-    Remplir champ    id=hosted-fields-card    4111 1111 1111 1111
+    Attendre element cliquable    ${iframe_carte}
+    Select Frame    ${iframe_carte}
+    Cliquer element    ${input_numero_carte}
+    Remplir champ    ${input_numero_carte}    4111 1111 1111 1111
     Unselect Frame
 
-    Attendre element cliquable   id=hosted-fields-frame-expiry
-    Select Frame    id=hosted-fields-frame-expiry
-    Cliquer element    id=hosted-fields-expiry
-    Remplir champ    id=hosted-fields-expiry    12/29
+    Attendre element cliquable   ${iframe_expiration}
+    Select Frame    ${iframe_expiration}
+    Cliquer element    ${input_date_expiration}
+    Remplir champ    ${input_date_expiration}    12/29
     Unselect Frame
 
-    Attendre element cliquable   id=hosted-fields-frame-cryptogram
-    Select Frame    id=hosted-fields-frame-cryptogram
-    Cliquer element    id=hosted-fields-cryptogram
-    Remplir champ    id=hosted-fields-cryptogram    123
+    Attendre element cliquable   ${iframe_cryptogramme}
+    Select Frame    ${iframe_cryptogramme}
+    Cliquer element    ${input_cryptogramme}
+    Remplir champ    ${input_cryptogramme}    123
     Unselect Frame
 
 
