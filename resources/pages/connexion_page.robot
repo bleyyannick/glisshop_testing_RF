@@ -15,12 +15,15 @@ Aller sur glisshop
     ${options}=    Evaluate
     ...    sys.modules['selenium.webdriver'].ChromeOptions()
     ...    sys, selenium.webdriver
+    ${headless}=    Set Variable    --headless=new
+    ${size}=    Set Variable    --window-size=1920,1080
     Call Method    ${options}    add_experimental_option    prefs    ${prefs}
+    Call Method    ${options}    add_argument    ${headless}
+    Call Method    ${options}    add_argument    --no-sandbox
+    Call Method    ${options}    add_argument    --disable-dev-shm-usage
+    Call Method    ${options}    add_argument    ${size}
     Open Browser    ${url_glisshop}    ${browser}    options=${options}
-    Maximize Browser Window
     Fermer le bandeau cookies
-
-
     
 Fermer le navigateur
     Close Browser
@@ -48,6 +51,7 @@ Saisir mot de passe
     Input Text    ${selector}    ${password}
 
 Aller sur la page de connexion
+    Wait Until Element Is Visible        css=[data-id="accountShort"] a[href*="creation-de-compte"]   ${default_timeout}
     Wait Until Element Is Enabled        css=[data-id="accountShort"] a[href*="creation-de-compte"]   timeout=${default_timeout}
     Click Element      css=[data-id="accountShort"] a[href*="creation-de-compte"]
     
@@ -56,6 +60,8 @@ Cliquer sur deja client
    Click Element      //*[@id="content-column"]/div/div[1]/ul/li[2]
 
 Soumettre le formulaire de connexion
+    Scroll Element Into View      ${xpath_bouton_login}
+    Wait Until Element Is Visible    ${xpath_bouton_login}    ${default_timeout}
     Click Button        ${xpath_bouton_login}
 
 Remplir le formulaire de connexion

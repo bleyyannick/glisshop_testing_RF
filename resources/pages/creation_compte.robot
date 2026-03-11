@@ -35,7 +35,7 @@ Remplir le formulaire de creation de compte
 Verifier creation de compte impossible
     Scroll Element Into View      ${xpath_bouton_creer_compte}
     Wait Until Element Is Visible    ${xpath_bouton_creer_compte}    timeout=${default_timeout}
-    Wait Until Keyword Succeeds    3x    1s    Element Should Be Disabled    ${xpath_bouton_creer_compte}
+    Element Should Be Disabled    ${xpath_bouton_creer_compte}
 
 
 Verifier que le bouton de connexion est desactive
