@@ -26,5 +26,4 @@ TC-EXG-002-02 Valider la commande d'un produit ajouté au panier
       Creer une adresse de livraison
       Valider la livraison
       Procéder au paiement
-      Sleep   4s
     

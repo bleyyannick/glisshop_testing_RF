@@ -13,22 +13,25 @@ Attendre element cliquable
     Attendre element visible    ${locator}    
     Wait Until Element Is Enabled    ${locator}    ${default_timeout}
 
+Attendre modal non visible
+    [Arguments]    ${modal_selector}
+    Wait Until Element Is Not Visible      ${modal_selector}    ${default_timeout}
+
 Cliquer element
     [Arguments]    ${locator}
     Wait Until Keyword Succeeds    5x    2s    Cliquer element interne    ${locator}
 
 Cliquer element interne
     [Arguments]    ${locator}
-    Attendre element cliquable    ${locator}
     Click Element    ${locator}
 
 Survol element
     [Arguments]    ${locator}
-    Wait Until Keyword Succeeds    5x    2s    Survol element interne    ${locator}
+    Wait Until Keyword Succeeds    3x    2s    Survol element interne    ${locator}
 
 Survol element interne
     [Arguments]    ${locator}
-    Attendre element visible    ${locator}
+    Attendre element cliquable   ${locator}
     Mouse Over    ${locator}
 
 Scroller vers element
@@ -50,7 +53,6 @@ Checker element
 Remplir champ
     [Arguments]    ${locator}    ${value}
     Attendre element cliquable    ${locator}
-    Cliquer element    ${locator}
     Input Text    ${locator}    ${value}
 
 Verifier Checkbox Cochee

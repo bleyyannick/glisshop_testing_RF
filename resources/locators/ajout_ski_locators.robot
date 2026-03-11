@@ -1,9 +1,10 @@
 *** Variables ***
 
+${modal_chargement}         css=div.modal-ajax-waiting-modal
 ${url_panier}               https://www.glisshop.com/glisshop/mon-panier.html
 ${url_infos}                https://www.glisshop.com/mon-compte/mes-informations.html
         
-${menu_principal}           xpath=//div[@class='navbar-toggle__wrapper']
+${menu_principal}           css=button[data-target='.navbar-responsive-collapse-mainMenu']
 ${menu_ski_rando}           xpath=//nav//a[@title='Ski rando']
 ${menu_ski_rando_homme}     xpath=//nav//a[@title='Ski rando homme']
 

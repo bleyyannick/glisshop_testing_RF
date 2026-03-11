@@ -7,6 +7,7 @@ Resource   ../locators/ajout_ski_locators.robot
 *** Keywords ***
 
 Ouvrir le menu
+    Wait Until Element Is Not Visible    css=div.modal-ajax-waiting-modal    timeout=10s
     Cliquer element    ${menu_principal}
 
 Acceder aux skis de rando homme
@@ -14,19 +15,16 @@ Acceder aux skis de rando homme
     Cliquer element    ${menu_ski_rando_homme}
 
 Acceder au panier
-    Attendre element cliquable    ${bouton_voir_panier}
     Cliquer element               ${bouton_voir_panier}
 
 Choisir un ski
     Scroller vers element    ${produit_ski}
-    Attendre element cliquable    ${produit_ski}
     Cliquer element          ${produit_ski}
 
 Choisir la taille du ski
     Cliquer element    ${taille_ski}
 
 Ajouter le ski au panier
-    Attendre element cliquable    ${bouton_ajouter_panier}
     Cliquer element    ${bouton_ajouter_panier}
 
 Continuer les achats
@@ -40,6 +38,7 @@ Creer une adresse de livraison
     Cliquer element    ${bouton_dropdown_pays}
     Cliquer element    ${options_pays}
     Execute Javascript    ${script_option_pays}
+    
     Remplir champ    ${input_nom}               Dupont
     Remplir champ    ${input_prenom}            Jean
     Scroller vers element    ${input_numero_adresse}
@@ -47,8 +46,10 @@ Creer une adresse de livraison
     Scroller vers element    ${input_rue}
     Remplir champ    ${input_rue}               Avenue Beau Soleil
     Scroller vers element    ${input_code_postal}
+    Attendre element cliquable    ${input_code_postal}
     Remplir champ    ${input_code_postal}      75017
     Scroller vers element    ${input_ville}
+    Attendre element cliquable    ${input_ville}
     Remplir champ    ${input_ville}             Paris
     Scroller vers element    ${input_telephone}
     Remplir champ    ${input_telephone}         0601020304
