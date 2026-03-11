@@ -51,13 +51,13 @@ Saisir mot de passe
     Input Text    ${selector}    ${password}
 
 Aller sur la page de connexion
-    Wait Until Element Is Visible        css=[data-id="accountShort"] a[href*="creation-de-compte"]   ${default_timeout}
-    Wait Until Element Is Enabled        css=[data-id="accountShort"] a[href*="creation-de-compte"]   timeout=${default_timeout}
-    Click Element      css=[data-id="accountShort"] a[href*="creation-de-compte"]
+    Wait Until Element Is Visible        ${selecteur_lien_creation_compte}   ${default_timeout}
+    Wait Until Element Is Enabled        ${selecteur_lien_creation_compte}   timeout=${default_timeout}
+    Click Element      ${selecteur_lien_creation_compte}
     
 Cliquer sur deja client
-   Wait Until Element Is Visible        xpath=//*[@id="content-column"]/div/div[1]/ul/li[2]    timeout=${default_timeout}
-   Click Element      //*[@id="content-column"]/div/div[1]/ul/li[2]
+   Wait Until Element Is Visible        ${xpath_onglet_deja_client}    timeout=${default_timeout}
+   Click Element      ${xpath_onglet_deja_client}
 
 Soumettre le formulaire de connexion
     Scroll Element Into View      ${xpath_bouton_login}
@@ -83,8 +83,8 @@ Verifier connexion reussie
     Element Should Contain    ${xpath_title_client}      ${msg_espace_client}
 
 Verifier message d'erreur de connexion
-    Wait Until Element Is Visible    css=.form-group p.text-danger    timeout=${default_timeout}
-    Element Should Contain    css=.form-group p.text-danger    ${msg_erreur_connexion}
+    Wait Until Element Is Visible    ${selecteur_message_erreur_connexion}    timeout=${default_timeout}
+    Element Should Contain    ${selecteur_message_erreur_connexion}    ${msg_erreur_connexion}
 
 Verifier que le bouton de connexion est desactive
     Scroll Element Into View      ${xpath_bouton_login}

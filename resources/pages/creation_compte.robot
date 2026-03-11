@@ -16,7 +16,7 @@ Cliquer sur nouveau client
 
 Confirmer mot de passe
     [Arguments]    ${password}
-    Input Text    css=#rbs-user-create-account-confirm-password        ${password}
+    Input Text    ${selecteur_input_create_confirm_password}        ${password}
 
 Creer un compte
     [Arguments]    ${email}    ${password}

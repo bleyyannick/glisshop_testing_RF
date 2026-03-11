@@ -39,3 +39,15 @@ ${input_ville}             xpath=//input[@type='text' and contains(@id,'locality
 ${input_rue}              xpath=//input[@placeholder="Adresse: rue, avenue, lieu dit... *"] 
 
 ${bouton_valide_livraison}  xpath=//button[normalize-space()='Valider la livraison']
+
+${header_mon_panier}         xpath=//h1[contains(@class,'c-cart-page__header-title') and normalize-space()='Mon panier']
+${bandeau_panier_cliquez_ici}  xpath=//p[contains(@class,'cart-locked')]//span[@data-ng-show="!cartData.productsConflict"][normalize-space()='Cliquez ici']
+${bouton_supprimer_produit_panier}  xpath=//div[contains(@class,'cart-line_priceWrapper')]//span[contains(@class,'icon-close')]/..
+${header_panier_vide}        xpath=//h1[normalize-space()='Votre panier est vide.']
+
+${iframe_carte}              id=hosted-fields-frame-card
+${iframe_expiration}         id=hosted-fields-frame-expiry
+${iframe_cryptogramme}       id=hosted-fields-frame-cryptogram
+${input_numero_carte}        id=hosted-fields-card
+${input_date_expiration}     id=hosted-fields-expiry
+${input_cryptogramme}        id=hosted-fields-cryptogram
