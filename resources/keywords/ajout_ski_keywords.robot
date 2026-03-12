@@ -112,9 +112,9 @@ Remplir le champ de paiement
 
 
 Remplir les informations de paiement
-    Attendre element visible   ${iframe_carte}
-    Attendre element visible   ${iframe_expiration}
-    Attendre element visible   ${iframe_cryptogramme}
+    Attendre element cliquable   ${iframe_carte}
+    Attendre element cliquable   ${iframe_expiration}
+    Attendre element cliquable   ${iframe_cryptogramme}
     
     Aller sur l'iframe    ${iframe_carte}
     Remplir le champ de paiement    ${input_numero_carte}    ${donnees_paiement}

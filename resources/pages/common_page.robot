@@ -41,7 +41,7 @@ Attendre element visible
 
 Attendre element cliquable
     [Arguments]    ${locator}
-    Attendre element visible    ${locator}
+    Wait Until Keyword Succeeds     5x    1s       Attendre element visible    ${locator}
     Wait Until Element Is Enabled    ${locator}    ${default_timeout}
 
 Attendre modal non visible
