@@ -7,8 +7,8 @@ ${categorie}                Ski rando
 ${sous_categorie}           homme
         
 ${menu_principal}           css=button[data-target='.navbar-responsive-collapse-mainMenu']
-${menu_ski_rando}           xpath=//nav//a[@title='${categorie}']
-${menu_ski_rando_homme}     xpath=//nav//a[@title='${categorie} ${sous_categorie}']
+${menu_ski_rando}           xpath=//nav//a[contains(@title, '${categorie}')]
+${menu_ski_rando_homme}     xpath=//nav//a[contains(@title, '${categorie}') and contains(@title, '${sous_categorie}')]
 
 ${produit_ski}              xpath=//div[contains(@class,'product-list-item')]//a[@title='Axess 92']//span[contains(text(),'Movement')]
 ${taille_ski}               xpath=//button[normalize-space()='185']

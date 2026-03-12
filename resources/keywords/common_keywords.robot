@@ -26,6 +26,6 @@ Cliquer sur deja client
 
 Verifier que le bouton est desactive
     [Arguments]    ${locator}
-    Scroll Element Into View      ${locator}
+    Scroll Element Into View    ${locator}
     Wait Until Element Is Visible    ${locator}    timeout=${default_timeout}
     Element Should Be Disabled    ${locator}
