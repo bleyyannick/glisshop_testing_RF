@@ -1,7 +1,6 @@
 *** Settings ***
 Library    SeleniumLibrary
 Resource   ../pages/ski_page.robot
-Resource   ../locators/connexion_locators.robot
 Resource   ../locators/ajout_ski_locators.robot
 
 *** Keywords ***
@@ -89,8 +88,6 @@ Aller vider le panier
 Aller se deconnecter
     Go To    ${url_infos}
     Attendre element visible    ${xpath_bouton_deconnexion}
-    Verifier element visible    ${xpath_bouton_deconnexion}
-    Attendre element cliquable    ${xpath_bouton_deconnexion}
     Cliquer element    ${xpath_bouton_deconnexion}
 
 Aller Vider le panier et se deconnecter
