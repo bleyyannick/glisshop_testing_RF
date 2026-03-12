@@ -18,8 +18,6 @@ Remplir le formulaire de connexion
     Saisir dans le champ    ${selecteur_input_email}      ${email}
     Saisir dans le champ    ${selecteur_input_password}      ${password}
 
-
-
 Verifier que le bouton de connexion est desactive
     Verifier que le bouton est desactive    ${xpath_bouton_login}
 
