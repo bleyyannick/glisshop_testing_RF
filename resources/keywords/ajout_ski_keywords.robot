@@ -1,7 +1,9 @@
 *** Settings ***
 Library    SeleniumLibrary
+Resource    ../pages/common_page.robot
 Resource   ../pages/ski_page.robot
 Resource   ../locators/ajout_ski_locators.robot
+Resource   ../../variables/global_variables.robot
 
 *** Keywords ***
 
@@ -9,9 +11,16 @@ Ouvrir le menu
     Wait Until Element Is Not Visible    ${modal_chargement}    timeout=10s
     Cliquer element    ${menu_principal}
 
-Acceder aux skis de rando homme
-    Survol element     ${menu_ski_rando}    
-    Cliquer element    ${menu_ski_rando_homme}
+Acceder à une sous-catégorie de produits
+    [Documentation]    Cliquer sur la sous-catégorie affichée sur le menu
+    [Arguments]    ${sous_categorie}
+    Survol element     ${sous_categorie}    
+    Cliquer element    ${sous_categorie}
+
+Accéder à une catégorie de produits
+    [Documentation]    Cliquer sur la catégorie affichée sur le menu
+    [Arguments]    ${categorie}
+    Survol element     ${categorie}
 
 Acceder au panier
     Cliquer element               ${bouton_voir_panier}
@@ -94,29 +103,27 @@ Aller Vider le panier et se deconnecter
     Aller vider le panier
     Aller se deconnecter
 
-Attendre iframe et switcher
+
+Remplir le champ de paiement
+    [Arguments]  ${input_paiement}     ${donnees_paiement}   
+     Cliquer element    ${input_paiement}
+     Remplir champ    ${input_paiement}    ${donnees_paiement}
+     Sortir de l'iframe
+
+
+Remplir les informations de paiement
     Attendre element visible   ${iframe_carte}
     Attendre element visible   ${iframe_expiration}
     Attendre element visible   ${iframe_cryptogramme}
     
-    Attendre element cliquable    ${iframe_carte}
-    Select Frame    ${iframe_carte}
-    Cliquer element    ${input_numero_carte}
-    Remplir champ    ${input_numero_carte}    4111 1111 1111 1111
-    Unselect Frame
+    Aller sur l'iframe    ${iframe_carte}
+    Remplir le champ de paiement    ${input_numero_carte}    ${donnees_paiement}
 
-    Attendre element cliquable   ${iframe_expiration}
-    Select Frame    ${iframe_expiration}
-    Cliquer element    ${input_date_expiration}
-    Remplir champ    ${input_date_expiration}    12/29
-    Unselect Frame
+    Aller sur l'iframe    ${iframe_expiration}
+    Remplir le champ de paiement    ${input_date_expiration}    ${donnees_date_expiration}
 
-    Attendre element cliquable   ${iframe_cryptogramme}
-    Select Frame    ${iframe_cryptogramme}
-    Cliquer element    ${input_cryptogramme}
-    Remplir champ    ${input_cryptogramme}    123
-    Unselect Frame
-
+    Aller sur l'iframe    ${iframe_cryptogramme}
+    Remplir le champ de paiement    ${input_cryptogramme}    ${donnees_cryptogramme}
 
 Procéder au paiement
-    Attendre iframe et switcher
+    Remplir les informations de paiement

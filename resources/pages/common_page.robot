@@ -48,12 +48,22 @@ Attendre modal non visible
     [Arguments]    ${modal_selector}
     Wait Until Element Is Not Visible    ${modal_selector}    ${default_timeout}
 
+Aller sur l'iframe
+    [Arguments]    ${iframe}
+    Attendre element cliquable    ${iframe}
+    Select Frame    ${iframe}
+
+Sortir de l'iframe
+    Unselect Frame
+
+
 Cliquer element
     [Arguments]    ${locator}
     Wait Until Keyword Succeeds    5x    2s    Cliquer element interne    ${locator}
 
 Cliquer element interne
     [Arguments]    ${locator}
+    Attendre element cliquable    ${locator}
     Click Element    ${locator}
 
 Survol element

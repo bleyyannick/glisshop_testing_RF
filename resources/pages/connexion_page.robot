@@ -18,16 +18,10 @@ Remplir le formulaire de connexion
     Saisir dans le champ    ${selecteur_input_email}      ${email}
     Saisir dans le champ    ${selecteur_input_password}      ${password}
 
-Se connecter avec les identifiants
-    [Arguments]    ${email}    ${password}
-    Aller sur la page de connexion
-    Cliquer sur deja client
-    Remplir le formulaire de connexion    ${email}    ${password}
-    Soumettre le formulaire de connexion
+
 
 Verifier que le bouton de connexion est desactive
     Verifier que le bouton est desactive    ${xpath_bouton_login}
-
 
 # Assertions
 Verifier connexion reussie
