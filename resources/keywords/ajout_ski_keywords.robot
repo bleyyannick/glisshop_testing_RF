@@ -56,7 +56,7 @@ Creer une adresse de livraison
     Attendre element visible    ${options_pays}
     Cliquer element    ${options_pays}
     Execute Javascript    ${script_option_pays}
-    
+    #  données utilisateurs fictives pour test à variabiliser !
     Remplir champ    ${input_nom}               Dupont
     Remplir champ    ${input_prenom}            Jean
     Scroller vers element    ${input_numero_adresse}
@@ -143,8 +143,6 @@ Remplir les informations de paiement
 
     Aller sur l'iframe    ${iframe_cryptogramme}
     Remplir le champ de paiement    ${input_cryptogramme}    ${donnees_cryptogramme}
-
-    
     Remplir le champ de paiement    ${bouton_input_payeur}    ${donnees_nom_payeur}
 
 Procéder au paiement
