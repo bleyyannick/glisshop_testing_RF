@@ -29,12 +29,11 @@ TC-EXG-002-02 Valider la commande d'un produit ajouté au panier en étant conne
       Creer une adresse de livraison
       Valider la livraison
       Procéder au paiement
-     # Vérifier paiement réussi
+      Verifier paiement réussi
 
 
 # TC-EXG-002-03 Valider la commande d'un produit ajouté au panier en étant non connecté
 #      [Tags]    smoke
-#      Se deconnecter si connecte
 #      Ouvrir le menu
 #      Accéder à une catégorie de produits    categorie=${menu_ski_rando}
 #      Acceder à une sous-catégorie de produits    sous_categorie=${menu_ski_rando_homme}

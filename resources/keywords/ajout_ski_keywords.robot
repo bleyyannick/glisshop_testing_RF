@@ -3,12 +3,11 @@ Library    SeleniumLibrary
 Resource    ../pages/common_page.robot
 Resource   ../pages/ski_page.robot
 Resource   ../locators/ajout_ski_locators.robot
-Resource   ../../variables/global_variables.robot
 
 *** Keywords ***
 
 Ouvrir le menu
-    Wait Until Element Is Not Visible    ${modal_chargement}    timeout=10s
+    Wait Until Element Is Not Visible    ${modal_chargement}     ${default_timeout}   
     Cliquer element    ${menu_principal}
 
 Acceder à une sous-catégorie de produits
@@ -76,6 +75,9 @@ Valider la livraison
     Scroller vers element         ${bouton_valide_livraison}
     Cliquer element               ${bouton_valide_livraison}
     
+Verifier paiement réussi
+         Attendre element cliquable   ${bouton_paiement}
+         Element Should Be Visible    ${bouton_paiement}
 
 Verifier que le panier contient un produit
     Verifier element visible    ${badge_panier}
@@ -124,6 +126,9 @@ Remplir les informations de paiement
 
     Aller sur l'iframe    ${iframe_cryptogramme}
     Remplir le champ de paiement    ${input_cryptogramme}    ${donnees_cryptogramme}
+
+    
+    Remplir le champ de paiement    ${bouton_input_payeur}    ${donnees_nom_payeur}
 
 Procéder au paiement
     Remplir les informations de paiement
