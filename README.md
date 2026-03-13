@@ -82,7 +82,15 @@ pip install -r requirements.txt
 
 ## Lancer les tests
 
-Execution de toutes les suites de tests :
+Pour lancer les tests avec le reporting, utilisez le script bash fourni :
+
+```bash
+bash run_tests.sh
+```
+
+Ce script execute les suites de tests et affiche le reporting a la fin.
+
+Execution manuelle de toutes les suites (option alternative) :
 
 ```bash
 source venv/bin/activate
