@@ -9,7 +9,7 @@ Documentation    Keywords techniques partages (attentes, interactions UI, iframe
 *** Keywords ***
 
 Aller sur glisshop
-    [Documentation]    Ouvre Glisshop avec Chrome headless et options stables pour CI.
+    [Documentation]    Ouvre Glisshop avec Chrome en mode visible et maximise la fenetre.
     ${prefs}=    Create Dictionary
     ...    profile.default_content_setting_values.notifications=${2}
     ...    autofill.profile_enabled=${False}
@@ -17,14 +17,10 @@ Aller sur glisshop
     ${options}=    Evaluate
     ...    sys.modules['selenium.webdriver'].ChromeOptions()
     ...    sys, selenium.webdriver
-    ${headless}=    Set Variable    --headless=new
-    ${size}=    Set Variable    --window-size=1920,1080
     Call Method    ${options}    add_experimental_option    prefs    ${prefs}
-    Call Method    ${options}    add_argument    ${headless}
-    Call Method    ${options}    add_argument    --no-sandbox
-    Call Method    ${options}    add_argument    --disable-dev-shm-usage
-    Call Method    ${options}    add_argument    ${size}
+    Call Method    ${options}    add_argument    --start-maximized
     Open Browser    ${url_glisshop}    ${browser}    options=${options}
+    Maximize Browser Window
     Fermer le bandeau cookies
 
 Fermer le navigateur
