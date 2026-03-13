@@ -1,12 +1,14 @@
 *** Settings ***
 Library    SeleniumLibrary
 Resource    ../pages/common_page.robot
-Resource   ../pages/ski_page.robot
 Resource   ../locators/ajout_ski_locators.robot
+
+Documentation    Keywords metier du parcours ajout au panier, livraison et paiement.
 
 *** Keywords ***
 
 Ouvrir le menu
+    [Documentation]    Ouvre le menu principal apres disparition du chargement initial.
     Wait Until Element Is Not Visible    ${modal_chargement}     ${default_timeout}   
     Cliquer element    ${menu_principal}
 
@@ -22,25 +24,31 @@ Accéder à une catégorie de produits
     Survol element     ${categorie}
 
 Acceder au panier
+    [Documentation]    Accede au panier depuis la modale d'ajout.
     Cliquer element               ${bouton_voir_panier}
 
 Choisir un ski
+    [Documentation]    Selectionne un produit ski sur la liste.
     Scroller vers element    ${produit_ski}
     Cliquer element          ${produit_ski}
 
 Choisir la taille du ski
+    [Documentation]    Selectionne la taille du ski avant ajout panier.
     Cliquer element    ${taille_ski}
 
 Ajouter le ski au panier
+    [Documentation]    Ajoute le produit configure au panier.
     Cliquer element    ${bouton_ajouter_panier}
 
 Continuer les achats
     Cliquer element    ${bouton_continuer_achats}
 
-Accepter Les Conditions
+Accepter les conditions
+    [Documentation]    Coche les CGV avant validation de commande.
     Checker element    ${checkbox_conditions_vente}    ${ng_class_checkbox_conditions_vente}
 
 Creer une adresse de livraison
+    [Documentation]    Renseigne et valide une adresse de livraison complete.
     Attendre element visible    ${bouton_creer_adresse}    
     Cliquer element    ${bouton_creer_adresse}
     Attendre element visible    ${bouton_dropdown_pays}
@@ -67,22 +75,27 @@ Creer une adresse de livraison
     Cliquer element    ${bouton_valide_coordonnes}
 
 Valider la commande
-    Accepter Les Conditions
+    [Documentation]    Valide l'etape commande apres acceptation des conditions.
+    Accepter les conditions
     Cliquer element    ${bouton_valide_commande}
 
 Valider la livraison
+    [Documentation]    Valide l'etape livraison.
     Attendre element cliquable    ${bouton_valide_livraison}
     Scroller vers element         ${bouton_valide_livraison}
     Cliquer element               ${bouton_valide_livraison}
     
 Verifier paiement réussi
-         Attendre element cliquable   ${bouton_paiement}
-         Element Should Be Visible    ${bouton_paiement}
+    [Documentation]    Verifie la presence du bouton de paiement en fin de parcours.
+    Attendre element cliquable   ${bouton_paiement}
+    Element Should Be Visible    ${bouton_paiement}
 
 Verifier que le panier contient un produit
+    [Documentation]    Assertion: verifie la presence du badge panier.
     Verifier element visible    ${badge_panier}
 
 Aller vider le panier
+    [Documentation]    Vide le panier en gerant le bandeau de verrouillage si present.
     Go To    ${url_panier}
     Attendre element visible    ${header_mon_panier}
     ${bandeau_visible}=    Run Keyword And Return Status
@@ -97,16 +110,19 @@ Aller vider le panier
 
 
 Aller se deconnecter
+    [Documentation]    Navigue vers le compte puis declenche la deconnexion.
     Go To    ${url_infos}
     Attendre element visible    ${xpath_bouton_deconnexion}
     Cliquer element    ${xpath_bouton_deconnexion}
 
-Aller Vider le panier et se deconnecter
+Aller vider le panier et se deconnecter
+    [Documentation]    Nettoyage de fin de test: panier vide puis deconnexion.
     Aller vider le panier
     Aller se deconnecter
 
 
 Remplir le champ de paiement
+    [Documentation]    Saisit une donnee de paiement dans l'iframe active puis en sort.
     [Arguments]  ${input_paiement}     ${donnees_paiement}   
      Cliquer element    ${input_paiement}
      Remplir champ    ${input_paiement}    ${donnees_paiement}
@@ -114,6 +130,7 @@ Remplir le champ de paiement
 
 
 Remplir les informations de paiement
+    [Documentation]    Renseigne carte, expiration, cryptogramme et nom du payeur.
     Attendre element cliquable   ${iframe_carte}
     Attendre element cliquable   ${iframe_expiration}
     Attendre element cliquable   ${iframe_cryptogramme}
@@ -131,4 +148,5 @@ Remplir les informations de paiement
     Remplir le champ de paiement    ${bouton_input_payeur}    ${donnees_nom_payeur}
 
 Procéder au paiement
+    [Documentation]    Etape metier de saisie des informations de paiement.
     Remplir les informations de paiement

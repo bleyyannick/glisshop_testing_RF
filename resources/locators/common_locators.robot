@@ -1,5 +1,7 @@
 *** Variables ***
 
+# Locators communs reutilises par plusieurs parcours.
+
 # --- Boutons navigation compte (partagés entre connexion et création de compte) ---
 ${texte_bouton_connexion}       Connexion à mon compte
 ${texte_bouton_deconnexion}     Déconnexion

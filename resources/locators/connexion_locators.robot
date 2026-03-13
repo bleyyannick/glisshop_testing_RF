@@ -1,5 +1,7 @@
 *** Variables ***
 
+# Locators et donnees de validation du parcours connexion.
+
 ${selecteur_input_email}       css=#block2-login
 ${selecteur_input_password}    css=#block2-password
 

@@ -1,15 +1,20 @@
 *** Variables ***
 
+# Locators du parcours produit -> panier -> livraison -> paiement.
+# Regle: garder les valeurs metier dynamiques (${categorie}, ${sous_categorie}) centralisees ici.
+
 ${modal_chargement}         css=div.modal-ajax-waiting-modal
 ${url_panier}               https://www.glisshop.com/glisshop/mon-panier.html
 ${url_infos}                https://www.glisshop.com/mon-compte/mes-informations.html
 ${categorie}                Ski rando
 ${sous_categorie}           homme
-        
+
+# Menu et navigation categories
 ${menu_principal}           css=button[data-target='.navbar-responsive-collapse-mainMenu']
 ${menu_ski_rando}           xpath=//nav//a[contains(@title, '${categorie}')]
 ${menu_ski_rando_homme}     xpath=//nav//a[contains(@title, '${categorie}') and contains(@title, '${sous_categorie}')]
 
+# Produit et ajout au panier
 ${produit_ski}              xpath=//div[contains(@class,'product-list-item')]//a[@title='Axess 92']//span[contains(text(),'Movement')]
 ${taille_ski}               xpath=//button[normalize-space()='185']
 
@@ -24,14 +29,13 @@ ${bouton_valide_coordonnes}  xpath=//button[normalize-space()='Valider mes coord
 ${badge_panier}             xpath=//header//span[contains(@class,'badge')]
 ${modal}                    xpath=//div[contains(@class,'modal-footer')]
 
-#Bouton de création d'adresse de livraison
+# Adresse de livraison
 ${bouton_creer_adresse}       xpath=//button[normalize-space()='Créer une nouvelle adresse']
 ${bouton_dropdown_pays}      xpath=//*[@id="address"]//button[contains(@class,'dropdown-toggle-list')]
 ${options_pays}             xpath=//*[@id="address"]//div[contains(@class,'dropdown-menu_lang')]
 ${script_option_pays}        [...document.querySelectorAll("#address [data-ng-click*='countryCode']")].find(el => el.textContent.includes('FRANCE')).click()
 
-
-#Formulaire adresse de livraison
+# Formulaire adresse de livraison
 ${input_nom}                xpath=//input[@type='text' and contains(@id,'lastname')]
 ${input_prenom}             xpath=//input[@type='text' and contains(@id,'firstname')]
 ${input_telephone}          xpath=//input[@type='text' and contains(@id,'phone')]
@@ -47,6 +51,7 @@ ${bandeau_panier_cliquez_ici}  xpath=//p[contains(@class,'cart-locked')]//span[@
 ${bouton_supprimer_produit_panier}  xpath=//div[contains(@class,'cart-line_priceWrapper')]//span[contains(@class,'icon-close')]/..
 ${header_panier_vide}        xpath=//h1[normalize-space()='Votre panier est vide.']
 
+# Paiement (iframes Dalenys)
 ${iframe_carte}              id=hosted-fields-frame-card
 ${iframe_expiration}         id=hosted-fields-frame-expiry
 ${iframe_cryptogramme}       id=hosted-fields-frame-cryptogram

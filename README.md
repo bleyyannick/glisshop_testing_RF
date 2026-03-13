@@ -21,6 +21,51 @@ L'objectif est de couvrir plusieurs parcours utilisateurs autour du site Glissho
 - data : donnees de test
 - results : rapports et logs d'execution
 
+## Documentation des keywords
+
+Les keywords sont organises en 2 niveaux pour separer le metier de la technique :
+
+- `resources/keywords/` : keywords metier (actions fonctionnelles lisibles pour les tests)
+- `resources/pages/` : keywords techniques (interaction bas niveau Selenium, synchronisation, UI)
+
+Cartographie des keywords metier :
+
+- `resources/keywords/common_keywords.robot` : authentification, deconnexion, assertions de connexion
+- `resources/keywords/connexion_keywords.robot` : scenario metier de tentative de connexion
+- `resources/keywords/creation_compte.keywords.robot` : scenario metier de creation de compte
+- `resources/keywords/ajout_ski_keywords.robot` : parcours panier/commande/paiement
+
+Cartographie des keywords techniques :
+
+- `resources/pages/common_page.robot` : primitives techniques reutilisables (clic, scroll, attente, iframe, checkbox Angular)
+- `resources/pages/connexion_page.robot` : formulaire/validations techniques de connexion
+- `resources/pages/creation_compte.robot` : formulaire/validations techniques de creation de compte
+
+Bonnes pratiques keywords :
+
+- Nommer les keywords en phrase orientee action (ex: `Valider la commande`).
+- Garder les assertions explicites dans des keywords dedies (`Verifier ...`).
+- Eviter d'utiliser des selecteurs en dur dans les tests: passer par les locators centralises.
+- Utiliser les keywords techniques de `common_page.robot` pour toute interaction Selenium (attentes, clics, iframe).
+
+## Documentation des locators
+
+Les locators sont centralises dans `resources/locators/` pour faciliter la maintenance.
+
+Repartition :
+
+- `common_locators.robot` : locators partages (connexion/deconnexion, boutons communs)
+- `connexion_locators.robot` : formulaire de connexion et messages d'erreur
+- `creation_compte_locators.robot` : formulaire de creation de compte
+- `ajout_ski_locators.robot` : menu produit, panier, livraison, paiement
+
+Conventions locators :
+
+- Prefixe explicite par type si pertinent (`xpath_`, `selecteur_`) et nom metier stable.
+- Preferer `id` ou `css` quand possible; utiliser `xpath` pour les cas dynamiques/complexes.
+- Pour les XPath dynamiques, toujours encadrer les variables Robot avec des quotes dans les predicats.
+- Regrouper les locators par ecran/zone fonctionnelle avec des commentaires courts.
+
 ## Prerequis
 
 - Python installe
