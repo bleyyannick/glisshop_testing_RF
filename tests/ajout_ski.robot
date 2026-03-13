@@ -1,6 +1,5 @@
 *** Settings ***
 Library    SeleniumLibrary
-Resource   ../resources/pages/ski_page.robot
 Resource   ../resources/keywords/common_keywords.robot
 Resource   ../resources/locators/ajout_ski_locators.robot
 Resource   ../resources/keywords/ajout_ski_keywords.robot
@@ -8,7 +7,7 @@ Resource   ../variables/global_variables.robot
 Suite Setup       Aller sur glisshop
 Suite Teardown    Fermer le navigateur
 Test Setup        Se connecter    ${valid_email}    ${valid_password}
-Test Teardown     Aller Vider le panier et se deconnecter
+Test Teardown     Aller vider le panier et se deconnecter
 
 
 
