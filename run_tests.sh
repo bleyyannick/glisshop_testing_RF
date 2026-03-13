@@ -1,4 +1,4 @@
-
+#!/bin/bash  
 rm -rf allure-results allure-report
 
 robot --listener allure_robotframework:allure-results \
