@@ -1,14 +1,13 @@
 *** Settings ***
-Library       SeleniumLibrary
-Resource      ../keywords/common_keywords.robot
+Documentation       Keyword metier de scenario de connexion.
 
-Documentation    Keyword metier de scenario de connexion.
+Library             SeleniumLibrary
+Resource            ../keywords/common_keywords.robot
+
 
 *** Keywords ***
-
-
 Utilisateur tente de se connecter
     [Documentation]    Execute une tentative de connexion puis le keyword de verification attendu.
     [Arguments]    ${email}    ${password}    ${verification_keyword}
-    Se connecter     ${email}    ${password}
+    Se connecter    ${email}    ${password}
     Run Keyword    ${verification_keyword}

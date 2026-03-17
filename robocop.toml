@@ -1,0 +1,2 @@
+[tool.robocop.lint]
+ignore = ["NAME02", "NAME08", "NAME18"]

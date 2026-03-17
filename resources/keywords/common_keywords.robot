@@ -1,18 +1,15 @@
 *** Settings ***
-Library    SeleniumLibrary
-Resource    ../pages/common_page.robot
+Documentation       Keywords metier partages pour connexion/deconnexion.
 
-Documentation    Keywords metier partages pour connexion/deconnexion.
+Library             SeleniumLibrary
+Resource            ../pages/common_page.robot
 
 
 *** Keywords ***
-
 Se deconnecter si connecte
     [Documentation]    Deconnecte l'utilisateur uniquement si le lien est visible.
     ${is_visible}=    Run Keyword And Return Status    Element Should Be Visible    ${xpath_bouton_deconnexion}
-    IF    ${is_visible}
-        Se deconnecter
-    END
+    IF    ${is_visible}    Se deconnecter
 
 Se connecter
     [Documentation]    Enchaine les etapes metier de connexion utilisateur.
@@ -22,30 +19,28 @@ Se connecter
     Remplir le formulaire de connexion    ${email}    ${password}
     Soumettre le formulaire de connexion
 
-
 Soumettre le formulaire de connexion
     [Documentation]    Soumet le formulaire de connexion.
-    Scroll Element Into View      ${xpath_bouton_login}
+    Scroll Element Into View    ${xpath_bouton_login}
     Wait Until Element Is Visible    ${xpath_bouton_login}    ${default_timeout}
-    Click Button        ${xpath_bouton_login}
+    Click Button    ${xpath_bouton_login}
 
 Remplir le formulaire de connexion
     [Documentation]    Renseigne email et mot de passe du formulaire de connexion.
     [Arguments]    ${email}    ${password}
-    Saisir dans le champ    ${selecteur_input_email}      ${email}
-    Saisir dans le champ    ${selecteur_input_password}      ${password}
-
+    Saisir dans le champ    ${selecteur_input_email}    ${email}
+    Saisir dans le champ    ${selecteur_input_password}    ${password}
 
 Verifier que le bouton de connexion est desactive
     [Documentation]    Assertion metier: bouton de connexion desactive.
     Verifier que le bouton est desactive    ${xpath_bouton_login}
 
-
 # Assertions
+
 Verifier connexion reussie
     [Documentation]    Assertion metier: l'espace client est affiche.
     Wait Until Element Is Visible    ${xpath_title_client}    timeout=${default_timeout}
-    Element Should Contain    ${xpath_title_client}      ${msg_espace_client}
+    Element Should Contain    ${xpath_title_client}    ${msg_espace_client}
 
 Verifier message d'erreur de connexion
     [Documentation]    Assertion metier: message d'erreur attendu affiche.

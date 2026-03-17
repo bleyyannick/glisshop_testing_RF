@@ -1,13 +1,13 @@
 *** Settings ***
-Library    SeleniumLibrary
-Resource    ../locators/common_locators.robot
-Resource    ../locators/connexion_locators.robot
-Resource    ../../variables/global_variables.robot
+Documentation       Keywords techniques partages (attentes, interactions UI, iframe, checkbox Angular).
 
-Documentation    Keywords techniques partages (attentes, interactions UI, iframe, checkbox Angular).
+Library             SeleniumLibrary
+Resource            ../locators/common_locators.robot
+Resource            ../locators/connexion_locators.robot
+Resource            ../../variables/global_variables.robot
+
 
 *** Keywords ***
-
 Aller sur glisshop
     [Documentation]    Ouvre Glisshop avec Chrome headless et options stables pour CI.
     ${prefs}=    Create Dictionary
@@ -49,7 +49,7 @@ Attendre element visible
 Attendre element cliquable
     [Documentation]    Attend qu'un element soit visible puis active avant clic/saisie.
     [Arguments]    ${locator}
-    Wait Until Keyword Succeeds     5x    1s       Attendre element visible    ${locator}
+    Wait Until Keyword Succeeds    5x    1s    Attendre element visible    ${locator}
     Wait Until Element Is Enabled    ${locator}    ${default_timeout}
 
 Attendre modal non visible
@@ -66,7 +66,6 @@ Aller sur l'iframe
 Sortir de l'iframe
     [Documentation]    Revient au document principal depuis une iframe.
     Unselect Frame
-
 
 Cliquer element
     [Documentation]    Clique un element avec retry pour fiabiliser les actions UI.
@@ -104,9 +103,9 @@ Verifier element visible
 
 Checker element
     [Documentation]    Coche une checkbox Angular puis valide le changement d'etat.
-    [Arguments]    ${locator}    ${ng-class}
+    [Arguments]    ${locator}    ${ng_class}
     Attendre element cliquable    ${locator}
-    Wait Until Keyword Succeeds    5x    1s    Cocher Checkbox Angular    ${locator}    ${ng-class}
+    Wait Until Keyword Succeeds    5x    1s    Cocher checkbox angular    ${locator}    ${ng_class}
 
 Remplir champ
     [Documentation]    Attend puis saisit une valeur dans un champ.
@@ -114,13 +113,13 @@ Remplir champ
     Attendre element cliquable    ${locator}
     Input Text    ${locator}    ${value}
 
-Verifier Checkbox Cochee
+Verifier checkbox cochee
     [Documentation]    Verifie que la classe Angular de checkbox indique l'etat coche.
     [Arguments]    ${locator}    ${ng_class}=ng-empty
     ${classes}=    Get Element Attribute    ${locator}    class
     Should Not Contain    ${classes}    ${ng_class}
 
-Cocher Checkbox Angular
+Cocher checkbox angular
     [Documentation]    Coche une checkbox Angular via JavaScript et declenche l'evenement change.
     [Arguments]    ${id}    ${ng_class}=ng-empty
     Execute Javascript
@@ -128,4 +127,4 @@ Cocher Checkbox Angular
     ...    el.checked = true;
     ...    angular.element(el).triggerHandler('change');
     Wait Until Keyword Succeeds    5x    1s
-    ...    Verifier Checkbox Cochee    id=${id}    ${ng_class}
+    ...    Verifier checkbox cochee    id=${id}    ${ng_class}
